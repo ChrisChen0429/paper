@@ -1,0 +1,297 @@
+\documentclass[doc,12pt]{apa6}
+
+% main font and language
+\usepackage[T1]{fontenc}
+\usepackage[american]{babel}
+\usepackage{newtxtext,newtxmath}
+\usepackage{setspace} % on for custom linespacing
+\setstretch{1.5} % set linespacing
+
+%** interactive PDF
+\usepackage{hyperref}
+%\hypersetup{ % links in colored text
+%     colorlinks = true,
+%     linkcolor = cyan,
+%     citecolor = cyan
+%}
+\hypersetup{ % links in colored boxes/lines
+    pdfborderstyle={/S/U/W 1}, % underline of width 1pt
+    colorlinks = false,
+    linkbordercolor = {0 0.5 1},
+    citebordercolor = {0 0.5 1},
+    urlbordercolor = {1 1 1}
+} 
+
+%** reference list
+\usepackage[natbibapa]{apacite}
+\usepackage{url}
+
+%** math mode
+\usepackage{amsmath}
+\usepackage{array}
+\usepackage[low-sup]{subdepth}
+
+%** table tools
+\usepackage{booktabs}
+\usepackage{caption}
+\usepackage{dcolumn}
+\usepackage[figuresleft]{rotating}
+\captionsetup[table]{font={stretch=1.25}, aboveskip=2pt}
+% tables at top on floats-only pages
+\makeatletter
+\setlength{\@fptop}{0pt}
+\setlength{\@fpbot}{0pt plus 1fil}
+\makeatother
+% multi-line cells
+\usepackage{makecell}
+\renewcommand\cellset{\renewcommand\arraystretch{0.8}%
+\setlength\extrarowheight{0pt}}
+
+%** graphic tools
+%\usepackage{graphicx}
+%\usepackage[export]{adjustbox} % large figure scaling
+\captionsetup[figure]{font={normalsize, stretch=1.5}}
+
+%** code tools
+\usepackage{color}
+\usepackage{zi4}
+\usepackage{listings}
+
+%** code blocks ans inline code
+\definecolor{white}{gray}{1.00}
+\definecolor{mediumgray}{gray}{0.44}
+\definecolor{mediumgreen}{RGB}{85,130,0}
+\definecolor{mediumcyan}{RGB}{0,115,115}
+\definecolor{darkorange}{RGB}{130,75,0}
+
+\lstdefinelanguage{Rsupp}{%
+  language = R,
+  otherkeywords = {!=,$,\&,\%/\%,\%*\%,\%\%},
+  morekeywords = [1]{data.frame, as.integer, is.na, with, within, lmer, mice, panImpute, jomoImpute, mids2mitml.list, jomo2mitml.list, testEstimates, testModels, testConstraints, clusterMeans, mitmlComplete},
+  morekeywords = [2]{!=, $, \&, \%/\%, \%*\%, \%\%, NULL, NA, NaN, TRUE, FALSE},
+  deletekeywords = {drop, package, trace, print, formula},
+  morecomment = [f][\color{mediumgray}][0]>,
+  alsoletter = {.}
+}
+\lstdefinelanguage{mplus}{
+  morekeywords={data,variable,define,analysis,model},
+  sensitive=false,
+  morecomment=[l]{!}, % inline comment
+}
+\lstdefinelanguage{bugs}{
+  language = R,
+  keywords = {for, dnorm, dmnorm, dunif, dwish, pow, inverse, mean},
+  otherkeywords={},
+  morekeywords = {},
+  morekeywords = [2]{},
+  deletekeywords = {},
+  alsoletter={.}
+}
+
+\lstset{ 
+  basewidth=0.99ex,
+  aboveskip=2.8ex plus 0.2ex minus 0.5ex,
+  belowskip=0.6ex plus 0.2ex minus 0.5ex,
+  lineskip=-0.0ex,
+  breaklines=true,
+  breakatwhitespace=true,
+  breakindent=10pt,
+  keepspaces=true,
+  showstringspaces=false,
+  language=Rsupp
+}
+\lstdefinestyle{rcode}{
+  basicstyle=\linespread{0.95}\footnotesize\ttfamily,
+  backgroundcolor=\color{white},
+  commentstyle=\color{mediumgray}\mdseries\footnotesize\ttfamily,
+  stringstyle=\color{darkorange}\mdseries\footnotesize\ttfamily,
+  keywordstyle=[1]\color{mediumgreen}\mdseries\footnotesize\ttfamily,
+  keywordstyle=[2]\color{mediumcyan}\mdseries\footnotesize\ttfamily,
+  rulecolor=\color{white},
+  frame=trbl,
+  framesep=6pt,
+  xleftmargin=0pt
+}
+\lstdefinestyle{mplus}{
+  basicstyle=\linespread{0.95}\footnotesize\ttfamily,
+  backgroundcolor=\color{white},
+  rulecolor=\color{white},
+  frame=trbl,
+  framesep=6pt,
+  xleftmargin=0pt,
+  language=mplus
+}
+\lstdefinestyle{bugs}{
+  basicstyle=\linespread{0.95}\footnotesize\ttfamily,
+  backgroundcolor=\color{white},
+  commentstyle=\color{mediumgray}\mdseries\footnotesize\ttfamily,
+  stringstyle=\color{darkorange}\mdseries\footnotesize\ttfamily,
+  keywordstyle=\color{mediumgreen}\mdseries\footnotesize\ttfamily,
+  rulecolor=\color{white},
+  frame=trbl,
+  framesep=6pt,
+  xleftmargin=0pt,
+  language=bugs
+}
+\lstdefinestyle{plain}{
+  basicstyle=\linespread{0.95}\footnotesize\ttfamily,
+  commentstyle=\color{black}\mdseries\footnotesize\ttfamily,
+  keywordstyle=\color{black}\mdseries\footnotesize\ttfamily,
+  rulecolor=\color{white},
+  frame=trbl,
+  framesep=6pt,
+  xleftmargin=0pt
+}\newcommand{\mystrut}{\vrule height 7pt depth 2pt width 0pt}
+\newcommand{\lstbox}[1]{\colorbox{background}{\mystrut\lstinline[style=rcode]?#1?}}
+
+% breiter Balken in mathmode
+\newcommand\widebar[1]{%
+  \hbox{%
+    \vbox{%
+      \hrule height 0.6pt% 
+      \kern0.256ex%
+      \hbox{%
+        \kern-0.15em%
+        \ensuremath{#1}%
+        \kern-0.1em%
+      }%
+    }%
+  }%
+} 
+
+% griechische Buchstaben APA-konform (aus txgreeks-Paket)
+\DeclareMathSymbol{\beta}{\mathalpha}{lettersA}{12}
+\DeclareMathSymbol{\delta}{\mathalpha}{lettersA}{14}
+\DeclareMathSymbol{\epsilon}{\mathalpha}{lettersA}{15}
+\DeclareMathSymbol{\varepsilon}{\mathalpha}{lettersA}{34}
+\DeclareMathSymbol{\theta}{\mathalpha}{lettersA}{18}
+\DeclareMathSymbol{\omega}{\mathalpha}{lettersA}{33}
+\DeclareMathSymbol{\rho}{\mathalpha}{lettersA}{26}
+\DeclareMathSymbol{\upsilon}{\mathalpha}{lettersA}{29}
+\DeclareMathSymbol{\tau}{\mathalpha}{lettersA}{28}
+\DeclareMathSymbol{\mu}{\mathalpha}{lettersA}{22}
+\DeclareMathSymbol{\nu}{\mathalpha}{lettersA}{23}
+\DeclareMathSymbol{\psi}{\mathalpha}{lettersA}{32}
+\DeclareMathSymbol{\kappa}{\mathalpha}{lettersA}{20}
+\DeclareMathSymbol{\lambda}{\mathalpha}{lettersA}{21}
+\DeclareMathSymbol{\phi}{\mathalpha}{lettersA}{30}
+\DeclareMathSymbol{\pi}{\mathalpha}{lettersA}{25}
+\DeclareMathSymbol{\sigma}{\mathalpha}{lettersA}{27}
+\DeclareMathSymbol{\alpha}{\mathalpha}{lettersA}{11}
+\DeclareMathSymbol{\gamma}{\mathalpha}{lettersA}{13}
+\DeclareMathSymbol{\chi}{\mathalpha}{lettersA}{31}
+\DeclareMathSymbol{\eta}{\mathalpha}{lettersA}{17}
+\DeclareMathSymbol{\zeta}{\mathalpha}{lettersA}{16}
+
+\title{Multiple Imputation of Missing Data at Level 2:\\ A Comparison of Fully Conditional and Joint Modeling in Multilevel Designs}
+\author{\\[1ex]Simon Grund$^{1,2}$, Oliver L\"udtke$^{1,2}$, and Alexander Robitzsch$^{1,2}$}
+\affiliation{\\[3ex]$^1$Leibniz Institute for Science and Mathematics Education, Kiel, Germany\\[1ex]
+$^2$Centre for International Student Assessment, Germany}
+
+\shorttitle{Supplemental Online Material}
+
+%%%
+\begin{document}
+
+~\\[4ex]\doublespace{ \maketitle }
+
+\begin{center}\begin{Large}~\\[8ex]
+\bf{Supplemental Online Material}
+\end{Large}\end{center}
+
+\newpage 
+\setcounter{page}{1}
+
+\noindent
+Enclosed in this document are the supplemental materials for our article entitled ``Multiple Imputation of Missing Data at Level 2: A Comparison of Fully Conditional and Joint Modeling in Multilevel Designs.''
+\hyperref[sec:supc]{Supplement A} contains the computer code and M\emph{plus} syntax file used in the empirical example.
+\hyperref[sec:supb]{Supplement B} contains an additional simulation study that compares an ``empirical Bayes'' and a fully Bayesian procedure for FCS-LAT.
+\hyperref[sec:supa]{Supplement C} contains an additional simulation study that contrasts the use of least informative and data-dependent priors in JM.
+\hyperref[sec:supd]{Supplement D} contains additional tables that include the complete results of Studies 1 and 2.
+
+\section{Supplement A: Computer Code for the Empirical Example}
+\label{sec:supa}
+
+Below, we provide the computer code for the statistical software R \citep{RCoreTeam2016} and the syntax file for the statistical software M\emph{plus} that were used in the empirical example in the main article.
+The data set comprised the German subsample of the Programme for International Student Assessment (PISA; \citealp{OECD2014}). These data are available online free of charge (\url{https://www.oecd.org/pisa}).
+
+\lstinputlisting[style=rcode]{listings/sup-Example_PISA.R} % \end{verb}
+
+\noindent
+Following the imputation, the completed data sets were saved in a series of text files.
+These files were analyzed with the statistical software M\emph{plus} \citep{Muthen2012} using the syntax file given below.
+
+\lstinputlisting[style=mplus]{listings/sup-Example_MplusSyntax.inp} % \end{verb}
+
+\clearpage
+
+\section{Supplement B: Fully Bayesian Procedure for FCS-LAT}
+\label{sec:supb}
+
+As an alternative to using an ``empirical Bayes'' procedure during the generation of plausible values of latent cluster means, a fully Bayesian procedure may be used that draws the model parameters from their posterior distributions.
+The resulting procedure is ``Bayesianly proper'' in the sense of \citet{Rubin1987} and may improve efficiency and coverage properties in smaller samples.
+In the following simulation study, we evaluated the differences between the empirical Bayes and the fully Bayesian procedure for the generation of latent cluster means.
+Both procedures were implemented using the R package \texttt{miceadds} \citep{Robitzsch2017}.
+\input{tables/supTables_Level2Missing-fullyBayes_CD-Bias-RMSE-Cov95}
+The simulated conditions were similar to those in Study 1 in the main article and were intended to match the conditions displayed in Figure 2 and Table 2 with smaller samples ($n=5$, $J=30$, 50, 100).
+
+The results of this simulation are provided in Table \ref{tab:sup-fb}.
+When FCS-LAT was based on an empirical Bayes procedure (EB), we observed coverage rates for the regression coefficient of $y$ on $z$ ($\hat{\beta}_{yz}$) below the nominal value of 95\% in very small samples ($J \leq 50$).
+On the other hand, when FCS-LAT was based on a fully Bayesian procedure (FB), the coverage rates were nearly optimal for all parameters and even in very small samples.
+In addition, FCS-LAT (FB) yielded lower values for the RMSE than FCS-MAN or FCS-LAT (EB) in these conditions, indicating that the parameters were estimated with greater accuracy overall.
+By contrast, the results for the bias were usually best under FCS-LAT (EB), whereas the bias under FCS-LAT (FB) was slightly higher for the two regression coefficients ($\hat{\beta}_{yz}$ and $\hat{\beta}_{zy}$).
+
+\section{Supplement C: Data-Dependent Priors in JM}
+\label{sec:supc}
+
+\noindent
+Even though the use of data-dependent priors (DDPs) is not without criticism \citep[e.g., see][]{Gelman2014}, it has been recommended that DDPs be used to mitigate problems in the estimation of multilevel models in smaller samples \citep[e.g.,][]{McNeish2016,Grund2016}.
+In the following simulation study, we explored the effects of using DDPs for MI of missing data at Level 2 using JM.
+In order to specify DDPs, we estimated the covariance matrix of the variables at Level 1 ($\hat{\boldsymbol\Sigma}_1$) and Level 2 ($\hat{\boldsymbol\Sigma}_2$) from the complete data using the formulae provided by \citet{Muthen1994}.
+To ensure that these matrices were positive-definite, the variances were constrained to be larger than zero, and the covariances were constrained in such a way that they implied a correlation between -1 and 1.
+Using these estimates, we set the scale matrices of the inverse-Wishart priors to $\mathbf{S}_1=\nu_1 \hat{\boldsymbol\Sigma}_1$ for the covariance matrix at Level 1 and $\mathbf{S}_2=\nu_2 \hat{\boldsymbol\Sigma}_2$ for the covariance matrix at Level 2, where the degrees of freedom $\nu_1$ and $\nu_2$ were set to match the dimensions of $\hat{\boldsymbol\Sigma}_1$ and $\hat{\boldsymbol\Sigma}_2$, respectively (i.e., largest possible dispersion; see \citealp{Schafer2002a}).
+The remaining parameters of the simulation were a subset of the conditions in Study 1 ($n=5$; $J=30$, 50, 100, 200, 500, 1000; $\rho_{Iy}=.10$, .30; $\lambda=0.5$; 20\% missing data).
+
+\begin{figure}[t]
+  \centering
+  \fitfigure{figures/sup-Figure_Bias_Mean-Var-Cov_md20-lam50.pdf}
+  \caption{\small Estimated bias for the mean and the variance of $z$ ($\hat\mu_{z}$ and $\hat\sigma_{z}^{2}$) and the covariance of $y$ with $z$ ($\hat\sigma_{yz}$) for varying numbers of clusters ($J$) and ICCs of $y$ ($\rho_{Iy}$) and 20\% missing data (MAR, $\lambda=0.5$). LD = listwise deletion; FCS-MAN = two-level FCS with manifest group means; JM = joint modeling with least-informative priors; JM-DDP = joint modeling with data-dependent priors.}
+  \label{fig:sup-ddp}
+\end{figure}
+
+The results for the bias in the mean and variance of $z$ ($\hat\mu_z$ and $\hat\sigma_z^2$), and the covariance of $y$ with $z$ ($\hat\sigma_{yz}$) are presented in Figure \ref{fig:sup-ddp}.
+As in the main study, all procedures provided essentially unbiased estimates of the mean and variance of $z$.
+However, to provide unbiased estimates of the covariance of $y$ with $z$, JM required slightly larger samples than FCS-MAN, especially when the ICC of $y$ was low ($J\geq200$ with $\rho_{Iy}$).
+By contrast, the use of data-dependent priors (JM-DDP) led to a noticeable decrease in bias; that is, much smaller samples were required for the bias in the parameter estimates to vanish ($J\geq100$).
+These results illustrate that the performance of JM may be substantially improved by employing data-dependent priors or, alternatively, by formulating a more reasonable ``prior guess'' of the variances and covariances at Level 1 and 2 on the basis of prior knowledge rather than relying on the standard least-informative priors.
+
+\section{Supplement D: Additional Tables}
+\label{sec:supd}
+
+\noindent
+This section presents the complete results of the simulation studies reported in the main article.
+Note that the bias is calculated here in a ``raw'' metric for all procedures, that is, with the ``true'' values in the data-generating model as a point of reference.
+This is in contrast to the main article, where the bias was calculated on the basis of the results obtained from the complete data sets.
+The results are organized in a series of tables numbered according to the simulation study. Tables 1-1 to 1-30 contain the results of Study 1, and Tables 2-1 to 2-40 contain the results of Study 2.
+
+\clearpage
+\captionsetup[table]{font={stretch=1.00}, aboveskip=4pt}
+
+\setcounter{table}{0}
+\renewcommand{\thetable}{1-\arabic{table}}
+\input{tables/supTables_Level2Missing_Bias-RMSE-Cov95_Study1}
+
+\clearpage
+\newgeometry{headsep=1.1in,textheight=5.8in}
+
+\setcounter{table}{0}
+\renewcommand{\thetable}{2-\arabic{table}}
+\input{tables/supTables_Level2Missing_Bias-RMSE-Cov95_Study2-extended}
+
+\clearpage
+\restoregeometry
+
+\bibliographystyle{apacite}
+\bibliography{../zotero_fullbib}
+
+\end{document}

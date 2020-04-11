@@ -1,0 +1,30 @@
+\begin{table}
+\begin{threeparttable}
+\setlength{\tabcolsep}{1.2pt}
+\renewcommand{\arraystretch}{1.00}
+\small
+\caption{\small Bias (in \%), RMSE, and Coverage of the 95\% Confidence Interval for Covariance of $y$ and $z$ ($\hat\sigma_{yz}$) and the Regression Coefficients of $y$ on $z$ and $z$ on $y$ ($\hat\beta_{yz}$ and $\hat\beta_{zy}$) for Small, Strongly Unbalanced Clusters ($n=5$, $\pm$80\%), Small ICC of $y$ ($\rho_{Iy}=.10$) and 20\% Missing Data (MAR, $\lambda=0.5$)\label{tab:supb}}
+\begin{tabular}{lccccccccc}
+\hline\\[-2.2ex]
+ & \multicolumn{3}{c}{Bias (\%)$^\text{a}$} & \multicolumn{3}{c}{RMSE} & \multicolumn{3}{c}{Coverage (\%)} \\ \cmidrule(r){2-4}\cmidrule(r){5-7}\cmidrule(r){8-10}
+  & FCS-MAN & FCS-NJ & FCS-INJ & FCS-MAN & FCS-NJ & FCS-INJ & FCS-MAN & FCS-NJ & \multicolumn{1}{c}{FCS-INJ} \\ 
+[0.2ex]\hline\\[-2.0ex]
+& \multicolumn{9}{c}{Covariance of $y$ with $z$ ($\hat\sigma_{yz}$, true value = 0.158)} \\[0.4ex]\hline\\[-2.0ex]
+\nopagebreak $J=50$  & ${-}1.9\phantom{0}$ & $\phantom{-}1.2\phantom{0}$ & $\phantom{-}3.1\phantom{0}$ & $\phantom{0}0.091\phantom{0}$ & $\phantom{0}0.093\phantom{0}$ & $\phantom{0}0.105\phantom{0}$ & $\phantom{0}94.8\phantom{0}$ & $\phantom{0}95.6\phantom{0}$ & $\phantom{0}95.6\phantom{0}$ \\
+\nopagebreak $J=200$  & ${-}3.7\phantom{0}$ & ${-}0.2\phantom{0}$ & ${-}0.8\phantom{0}$ & $\phantom{0}0.046\phantom{0}$ & $\phantom{0}0.046\phantom{0}$ & $\phantom{0}0.047\phantom{0}$ & $\phantom{0}94.9\phantom{0}$ & $\phantom{0}95.0\phantom{0}$ & $\phantom{0}94.5\phantom{0}$ \\
+\nopagebreak $J=1000$  & ${-}3.5\phantom{0}$ & ${-}0.5\phantom{0}$ & ${-}1.0\phantom{0}$ & $\phantom{0}0.021\phantom{0}$ & $\phantom{0}0.020\phantom{0}$ & $\phantom{0}0.020\phantom{0}$ & $\phantom{0}95.2\phantom{0}$ & $\phantom{0}96.1\phantom{0}$ & $\phantom{0}95.6\phantom{0}$ \\
+[0.5ex]\hline\\[-2.0ex] 
+& \multicolumn{9}{c}{Regression $y \sim z$ ($\hat\beta_{yz}$, true value = 0.158)} \\[0.4ex]\hline\\[-2.0ex]
+\nopagebreak $J=50$  & ${-}5.1\phantom{0}$ & ${-}4.9\phantom{0}$ & ${-}6.1\phantom{0}$ & $\phantom{0}0.085\phantom{0}$ & $\phantom{0}0.085\phantom{0}$ & $\phantom{0}0.086\phantom{0}$ & $\phantom{0}93.8\phantom{0}$ & $\phantom{0}93.2\phantom{0}$ & $\phantom{0}93.2\phantom{0}$ \\
+\nopagebreak $J=200$  & ${-}4.6\phantom{0}$ & ${-}1.7\phantom{0}$ & ${-}2.5\phantom{0}$ & $\phantom{0}0.042\phantom{0}$ & $\phantom{0}0.042\phantom{0}$ & $\phantom{0}0.043\phantom{0}$ & $\phantom{0}95.4\phantom{0}$ & $\phantom{0}94.6\phantom{0}$ & $\phantom{0}95.1\phantom{0}$ \\
+\nopagebreak $J=1000$  & ${-}3.7\phantom{0}$ & ${-}0.6\phantom{0}$ & ${-}1.1\phantom{0}$ & $\phantom{0}0.019\phantom{0}$ & $\phantom{0}0.019\phantom{0}$ & $\phantom{0}0.019\phantom{0}$ & $\phantom{0}95.3\phantom{0}$ & $\phantom{0}95.7\phantom{0}$ & $\phantom{0}95.6\phantom{0}$ \\
+[0.5ex]\hline\\[-2.0ex] 
+& \multicolumn{9}{c}{Regression $z \sim y$ ($\hat\beta_{zy}$, true value = 1.581)} \\[0.4ex]\hline\\[-2.0ex]
+\nopagebreak $J=50$  & ${-}10.7\phantom{0}$ & $\phantom{0}{-}6.6\phantom{0}$ & $\phantom{0}{-}6.9\phantom{0}$ & $\phantom{0}1.701\phantom{0}$ & $\phantom{0}1.756\phantom{0}$ & $\phantom{0}1.850\phantom{0}$ & $\phantom{0}94.2\phantom{0}$ & $\phantom{0}95.0\phantom{0}$ & $\phantom{0}94.7\phantom{0}$ \\
+\nopagebreak $J=200$  & $\phantom{0}{-}6.4\phantom{0}$ & $\phantom{0}{-}0.4\phantom{0}$ & $\phantom{0}{-}2.0\phantom{0}$ & $\phantom{0}0.601\phantom{0}$ & $\phantom{0}0.677\phantom{0}$ & $\phantom{0}0.650\phantom{0}$ & $\phantom{0}94.2\phantom{0}$ & $\phantom{0}95.0\phantom{0}$ & $\phantom{0}94.4\phantom{0}$ \\
+\nopagebreak $J=1000$  & $\phantom{0}{-}5.2\phantom{0}$ & $\phantom{0}{-}0.5\phantom{0}$ & $\phantom{0}{-}1.5\phantom{0}$ & $\phantom{0}0.224\phantom{0}$ & $\phantom{0}0.232\phantom{0}$ & $\phantom{0}0.229\phantom{0}$ & $\phantom{0}94.7\phantom{0}$ & $\phantom{0}96.5\phantom{0}$ & $\phantom{0}96.0\phantom{0}$ \\
+[0.5ex]\hline\\[-1.8ex] 
+\end{tabular}
+\begin{tablenotes}[para,flushleft]{\footnotesize \textit{Note.} $J$ = number of clusters; FCS-MAN = two-level FCS with manifest cluster means; FCS-NJ = two-level FCS with manifest cluster means and cluster size $n_j$; FCS-INJ = two-level FCS with manifest cluster means and inverse of cluster size $1/n_j$.\\$^\text{a}$ The bias was calculated relative to the average estimates obtained from complete data sets.}\end{tablenotes}
+\end{threeparttable}
+\end{table}

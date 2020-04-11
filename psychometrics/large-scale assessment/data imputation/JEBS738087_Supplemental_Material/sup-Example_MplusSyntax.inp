@@ -1,0 +1,26 @@
+TITLE:
+Empirical example using data from PISA 2012;
+DATA:
+FILE = ..._list.dat;   ! replace "..." with prefix for imputation method
+TYPE = IMPUTATION;     ! (e.g., "jm_list.dat")
+
+VARIABLE:
+NAMES = SCHOOLID GENDER ESCS CLSMAN STUDREL PVMATH NSTU NCMP;
+USEVARIABLES = SCHOOLID GENDER ESCS CLSMAN STUDREL PVMATH NSTU NCMP SCHESCS;
+BETWEEN = NSTU NCMP SCHESCS;
+WITHIN = GENDER ESCS;
+CLUSTER = SCHOOLID;
+
+DEFINE:
+SCHESCS = CLUSTER_MEAN (ESCS);   ! manifest cluster means for ESCS
+CENTER ESCS (GROUPMEAN);         ! cluster mean centering for ESCS
+CENTER SCHESCS (GRANDMEAN);      ! grand mean centering for SCHESCH
+
+ANALYSIS:
+TYPE = TWOLEVEL;
+
+MODEL:
+%within%
+PVMATH on GENDER ESCS CLSMAN STUDREL;
+%between%
+PVMATH on NSTU NCMP SCHESCS CLSMAN STUDREL;
